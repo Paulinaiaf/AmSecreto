@@ -1,0 +1,480 @@
+:root {
+    /* Paleta de colores verde-azul */
+    --color-primary: #0D7377;          /* Verde azulado oscuro */
+    --color-secondary: #14A085;        /* Verde esmeralda */
+    --color-tertiary: #329F5B;         /* Verde medio */
+    --color-accent: #40BF68;           /* Verde claro */
+    --color-light: #CFF4D2;            /* Verde muy claro */
+    --color-blue-primary: #2E86AB;     /* Azul principal */
+    --color-blue-secondary: #A23B72;   /* Azul-magenta */
+    --color-button: #F18F01;           /* Naranja vibrante */
+    --color-button-hover: #C73E1D;     /* Rojo-naranja */
+    --color-text: #2D3748;             /* Gris oscuro */
+    --color-white: #FFFFFF;
+    --color-success: #38A169;          /* Verde éxito */
+    
+    /* Gradientes */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-blue-primary) 100%);
+    --gradient-secondary: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-accent) 100%);
+    --gradient-button: linear-gradient(135deg, var(--color-button) 0%, var(--color-button-hover) 100%);
+    
+    /* Sombras */
+    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.15);
+    --shadow-strong: 0 20px 40px rgba(0, 0, 0, 0.25);
+    --shadow-colored: 0 10px 30px rgba(13, 115, 119, 0.3);
+}
+
+/* Animaciones personalizadas */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(64, 191, 104, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(64, 191, 104, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(64, 191, 104, 0);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -468px 0;
+    }
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--gradient-primary);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+}
+
+/* Efecto de partículas en el fondo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent);
+    background-repeat: repeat;
+    background-size: 100px 100px;
+    animation: shimmer 3s infinite linear;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 900px;
+    margin: 20px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Header con efectos */
+.header-banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.header-banner::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--gradient-secondary);
+    border-radius: 2px;
+}
+
+.main-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-family: "Merriweather", serif;
+    font-weight: 900;
+    font-style: italic;
+    color: var(--color-white);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    animation: bounceIn 1s ease-out 0.3s both;
+}
+
+.header-banner img {
+    max-width: 250px;
+    height: auto;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+    animation: bounceIn 1s ease-out 0.6s both;
+}
+
+/* Sección principal con glassmorphism */
+.input-section {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    box-shadow: var(--shadow-strong);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 30px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.input-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-secondary);
+}
+
+.section-title {
+    font-family: "Inter", sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out 0.9s both;
+}
+
+/* Input wrapper con efectos modernos */
+.input-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 30px;
+    position: relative;
+    animation: fadeInUp 0.8s ease-out 1.2s both;
+}
+
+.input-name {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid rgba(13, 115, 119, 0.2);
+    border-right: none;
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-name:focus {
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 3px rgba(20, 160, 133, 0.1);
+    background: var(--color-white);
+    transform: translateY(-2px);
+}
+
+.input-name::placeholder {
+    color: rgba(45, 55, 72, 0.6);
+    font-style: italic;
+}
+
+/* Botones con efectos avanzados */
+.button-add {
+    background: var(--gradient-secondary);
+    color: var(--color-white);
+    border: 2px solid var(--color-secondary);
+    border-radius: 0 25px 25px 0;
+    padding: 15px 25px;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.button-add::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.button-add:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.button-add:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.button-add:active {
+    transform: translateY(0);
+}
+
+/* Lista de amigos con animaciones */
+.name-list {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+    animation: fadeInUp 0.8s ease-out 1.5s both;
+}
+
+.name-list li {
+    background: linear-gradient(135deg, rgba(20, 160, 133, 0.1) 0%, rgba(64, 191, 104, 0.1) 100%);
+    border: 1px solid rgba(20, 160, 133, 0.2);
+    border-radius: 15px;
+    padding: 12px 20px;
+    margin: 10px 0;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: var(--color-text);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    animation: bounceIn 0.5s ease-out;
+}
+
+.name-list li:hover {
+    transform: translateX(10px);
+    background: linear-gradient(135deg, rgba(20, 160, 133, 0.15) 0%, rgba(64, 191, 104, 0.15) 100%);
+    border-color: var(--color-secondary);
+}
+
+/* Botón de sortear con efectos especiales */
+.button-container {
+    width: 100%;
+    max-width: 300px;
+    margin-top: 20px;
+    animation: fadeInUp 0.8s ease-out 1.8s both;
+}
+
+.button-draw {
+    width: 100%;
+    background: var(--gradient-button);
+    color: var(--color-white);
+    border: none;
+    border-radius: 25px;
+    padding: 18px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-medium);
+}
+
+.button-draw::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
+}
+
+.button-draw:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--shadow-strong);
+    animation: pulse 2s infinite;
+}
+
+.button-draw:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.button-draw:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.button-draw img {
+    margin-right: 15px;
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s ease;
+}
+
+.button-draw:hover img {
+    transform: rotate(360deg);
+}
+
+/* Lista de resultados con efectos especiales */
+.result-list {
+    margin-top: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(56, 161, 105, 0.1) 0%, rgba(64, 191, 104, 0.1) 100%);
+    border: 2px solid var(--color-success);
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-success);
+    font-family: "Inter", sans-serif;
+    animation: bounceIn 0.8s ease-out;
+    box-shadow: var(--shadow-soft);
+}
+
+.result-list:empty {
+    display: none;
+}
+
+/* Responsive design mejorado */
+@media (max-width: 768px) {
+    .main-content {
+        margin: 10px;
+    }
+    
+    .input-section {
+        padding: 30px 20px;
+        border-radius: 20px;
+    }
+    
+    .input-wrapper {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .input-name {
+        border-radius: 25px;
+        border: 2px solid rgba(13, 115, 119, 0.2);
+    }
+    
+    .button-add {
+        border-radius: 25px;
+        border: 2px solid var(--color-secondary);
+    }
+    
+    .header-banner {
+        padding: 20px;
+    }
+    
+    /* Imagen responsive en móviles */
+    .header-banner img {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-section {
+        padding: 20px 15px;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    /* Imagen más pequeña en pantallas muy pequeñas */
+    .header-banner img {
+        max-width: 180px;
+    }
+}
+
+/* Efectos de hover globales mejorados */
+button:not(:disabled) {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animación de carga para elementos dinámicos */
+.loading {
+    animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+/* Clases utilitarias para animaciones */
+.fade-in {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.bounce-in {
+    animation: bounceIn 0.6s ease-out;
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
